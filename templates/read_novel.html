@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ novel['novel_title'] }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            padding: 20px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            font-size: 18px;
+        }
+        strong {
+            font-weight: bold;
+        }
+        p {
+            margin: 5px 0;
+        }
+        .rating-form {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>{{ novel['novel_title'] }}</h1>
+<p>Author: {{ novel['author_name'] }}</p>
+<!-- 修改评分和分类表单 -->
+<form class="rating-form" method="post" action="{{ url_for('read_novel', novel_id=novel['novel_id']) }}">
+    <label for="rating">打分:</label>
+    <select id="rating" name="rating">
+        <option value="1">1 Star</option>
+        <option value="2">2 Stars</option>
+        <option value="3">3 Stars</option>
+        <option value="4">4 Stars</option>
+        <option value="5">5 Stars</option>
+    </select>
+    <button type="submit" name="submit_rating">确认</button>
+    
+    <label for="new_category">更改分类:</label>
+    <select id="new_category" name="new_category">
+        {% for category in categories %}
+            <option value="{{ category['category_id'] }}">{{ category['category_name'] }}</option>
+        {% endfor %}
+    </select>
+    <button type="submit" name="change_category">确认</button>
+</form>
+    <pre>{{ novel['novel_content'] }}</pre>
+    <p><strong>Author:</strong> {{ novel['author_name'] }}</p>
+    <p><strong>Category:</strong> {{ novel['category_name'] }}</p>
+    <p><strong>Rating:</strong> {{ novel['rating'] }}</p>
+    <p><strong>Upload Date:</strong> {{ novel['upload_date'] }}</p>
+</body>
+</html>
+
+
+

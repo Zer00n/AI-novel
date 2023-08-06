@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Novel</title>
+</head>
+<body>
+    <h1>Add Novel</h1>
+    <form method="POST">
+        <label for="title">Title:</label>
+        <input type="text" name="title"><br>
+        <label for="content">Content:</label>
+        <textarea name="content"></textarea><br>
+        <label for="author">Author:</label>
+        <select name="author">
+            {% for author in authors %}
+            <option value="{{ author.author_id }}">{{ author.author_name }}</option>
+            {% endfor %}
+        </select><br>
+        <label for="category">Category:</label>
+        <select name="category">
+            {% for category in categories %}
+            <option value="{{ category.category_id }}">{{ category.category_name }}</option>
+            {% endfor %}
+        </select><br>
+        <label for="rating">Rating:</label>
+        <input type="number" name="rating"><br>
+        <input type="submit" value="Add">
+    </form>
+</body>
+</html>

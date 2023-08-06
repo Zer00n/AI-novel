@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Novel Reading Website</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            padding: 20px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: #fff;
+        }
+        li .rating {
+            font-size: 16px;
+            color: #ff9800;
+        }
+        li a {
+            color: #333;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        select, button {
+            font-size: 16px;
+            padding: 5px;
+        }
+        .upload-date {
+            font-size: 5px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <h1>小说列表</h1>
+    <form method="get" action="/">
+        <label for="category">小说分类:</label>
+        <select id="category" name="category">
+            <option value="">All</option>
+            {% for category in categories %}
+                <option value="{{ category['category_id'] }}">{{ category['category_name'] }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Filter</button>
+    </form>
+    <form method="post" action="{{ url_for('search') }}">
+        <input type="text" name="keyword" placeholder="Search by Title">
+        <button type="submit">Search</button>
+    </form>
+    <form method="post" action="{{ url_for('index') }}">
+        <!-- ... 其他筛选部分 ... -->
+        <label for="author_search">Search by Author:</label>
+        <input type="text" id="author_search" name="author_search" value="{{ request.form['author_search'] }}">
+        <button type="submit">Search</button>
+    </form>
+    <ul>
+        {% for novel in novels %}
+        <li>
+            <span class="rating">Rating: {{ novel['rating'] }}</span>
+            <a href="{{ url_for('read_novel', novel_id=novel['novel_id']) }}">{{ novel['novel_title'] }}</a>
+            <span class="upload-date">( {{ novel['upload_date'] }})</span>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
