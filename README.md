@@ -9,6 +9,7 @@ python import.py 用来导入本地硬盘中txt格式的小说。
 录入功能没有详细做，只是个Demo，目前可以正常访问，并具备简单的筛选、搜索功能，页面写了CSS做了简单的优化。
 
 以下是数据库的表结构
+```
 CREATE TABLE Authors (
     author_id INT PRIMARY KEY AUTO_INCREMENT,
     author_name VARCHAR(255)
@@ -30,3 +31,4 @@ CREATE TABLE Novels (
     FOREIGN KEY (author_id) REFERENCES Authors(author_id),
     FOREIGN KEY (category_id) REFERENCES Categories(category_id)
 );
+```
