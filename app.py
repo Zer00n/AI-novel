@@ -10,8 +10,8 @@ def create_connection():
         connection = mysql.connector.connect(
             host='127.0.0.1',
             database='bookdb',  # 替换为你的数据库名称
-            user='root',      # 替换为你的数据库用户名
-            password=''   # 替换为你的数据库密码
+            user='username',      # 替换为你的数据库用户名
+            password='123123'   # 替换为你的数据库密码
         )
         if connection.is_connected():
             print('Connected to MySQL database')
