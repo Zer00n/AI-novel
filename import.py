@@ -10,8 +10,8 @@ def create_connection():
         connection = mysql.connector.connect(
             host='127.0.0.1',
             database='bookdb',  # 替换为你的数据库名称
-            user='root',      # 替换为你的数据库用户名
-            password='',   # 替换为你的数据库密码
+            user='username',      # 替换为你的数据库用户名
+            password='123123',   # 替换为你的数据库密码
             charset='utf8mb4',
             connection_timeout=120
         )
@@ -65,4 +65,4 @@ def import_txt_files(directory):
         print('Imported .txt files to database')
 
 if __name__ == '__main__':
-    import_txt_files('F:\\Book\\新建文件夹 (2)\\2023未整理')  # 替换为你的.txt文件所在目录的路径
+    import_txt_files('小说TXT所在的目录')  # 替换为你的.txt文件所在目录的路径
